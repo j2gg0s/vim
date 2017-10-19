@@ -26,10 +26,10 @@ set foldmethod=indent
 :autocmd FileType rst :set foldmethod=indent
 :autocmd FileType rst :set softtabstop=4
 " 分屏快捷键映射
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
+" map <c-h> <c-w>h
+" map <c-j> <c-w>j
+" map <c-k> <c-w>k
+" map <c-l> <c-w>l
 " 利用特殊的符号来区分 tab 和 space
 set list
 set listchars=tab:▸\ ,eol:¬
