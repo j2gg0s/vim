@@ -41,3 +41,8 @@ colorscheme solarized
 set laststatus=2
 " 显示行列
 set ruler
+
+set belloff=all
+let g:go_fmt_autosave = 0
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+nmap <F8> :TagbarToggle<CR>
