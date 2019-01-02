@@ -8,7 +8,7 @@ disable log
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/yanjie.wang02/.oh-my-zsh
+export ZSH=/Users/j2gg0salibaba/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -91,3 +91,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias tmux="tmux -2"
+
+export GOPATH=$HOME/go
+export GODIR=$HOME/go/src/github.com/golang/go
+export PATH=$GOPATH/bin:$PATH
+export PATH=/usr/loca/go/bin:$PATH
+
+[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
