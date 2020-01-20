@@ -6,14 +6,13 @@ filetype plugin indent on
 set number
 set autoindent
 set backspace=2
+
 " 缩进
 set tabstop=4
 set shiftwidth=4
 set expandtab
 " 忽略大小写，高亮搜索，增量搜索
 set ic hls is
-" 折叠
-set foldmethod=indent
 " 文件检测
 :filetype on
 :filetype plugin on
@@ -21,10 +20,14 @@ set foldmethod=indent
 " Python 文件专享
 :autocmd FileType python :set foldlevel=0
 :autocmd FileType python :set softtabstop=4
+:autocmd FileType python :set foldmethod=indent
 " rst 文件
 :autocmd FileType rst :set expandtab
 :autocmd FileType rst :set foldmethod=indent
 :autocmd FileType rst :set softtabstop=4
+
+:autocmd FileType go :set foldmethod=indent
+:autocmd FileType xml :set foldmethod=indent
 " 分屏快捷键映射
 " map <c-h> <c-w>h
 " map <c-j> <c-w>j
@@ -46,3 +49,12 @@ set belloff=all
 let g:go_fmt_autosave = 0
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 nmap <F8> :TagbarToggle<CR>
+
+autocmd BufEnter SConstruct :setlocal filetype=python
+autocmd BufEnter SConscript :setlocal filetype=python
+
+" ctags
+map <F9> :!ctags -R -f ~/.language_tags/.python.tags `python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+" ctags -> gutentags
+let g:gutentags_ctags_tagfile = '.gutentags'
+:autocmd FileType python :set tags+=~/.language_tags/.python.tags
