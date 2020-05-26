@@ -6,6 +6,7 @@ fi
 disable log
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/local/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/j2gg0salibaba/.oh-my-zsh
@@ -94,7 +95,13 @@ alias tmux="tmux -2"
 
 export GOPATH=$HOME/go
 export GODIR=$HOME/go/src/github.com/golang/go
-export PATH=$GOPATH/bin:$PATH
-export PATH=/usr/loca/go/bin:$PATH
+
+if [[ $PATH != *"/usr/local/go/bin"* ]]; then
+    export PATH=/usr/local/go/bin:$PATH
+fi
+
+if [[ $PATH != *"$GOPATH/bin"* ]]; then
+    export PATH=$GOPATH/bin:$PATH
+fi
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'

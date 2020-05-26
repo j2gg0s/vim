@@ -58,3 +58,6 @@ map <F9> :!ctags -R -f ~/.language_tags/.python.tags `python -c "from distutils.
 " ctags -> gutentags
 let g:gutentags_ctags_tagfile = '.gutentags'
 :autocmd FileType python :set tags+=~/.language_tags/.python.tags
+
+" 提示音
+set noeb
