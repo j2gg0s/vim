@@ -1,0 +1,2 @@
+--ignore-file=match:.*_test.go
+--ignore-file=is:.gutentags
