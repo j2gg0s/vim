@@ -104,4 +104,25 @@ if [[ $PATH != *"$GOPATH/bin"* ]]; then
     export PATH=$GOPATH/bin:$PATH
 fi
 
+if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then
+    export PATH=$PATH:/usr/local/opt/libpq/bin/
+fi
+
+if [[ $PATH != *"/usr/local/Cellar/python@3.7/3.7.9/bin"* ]]; then
+    export PATH=$PATH:/usr/local/Cellar/python@3.7/3.7.9/bin
+fi
+
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+
+
+export GOPROXY=https://goproxy.cn,direct
+export GOPRIVATE=dev.rcrai.com
+export GO111MODULE=on
+
+# bash completion
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+export PATH="/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:$PATH"
+
+alias startproxy="export all_proxy=socks5://127.0.0.1:1086 && export http_proxy=http://127.0.0.1:1087 && export https_proxy=http://127.0.0.1:1087"
+alias stopproxy="unset all_proxy && unset http_proxy && unset https_proxy"

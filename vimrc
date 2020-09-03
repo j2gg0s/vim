@@ -1,12 +1,40 @@
 " nerdtree
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-autocmd vimenter * NERDTree
+" execute pathogen#infect()
+
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" https://github.com/junegunn/vim-plug
+call plug#begin("~/.vim/plugged")
+Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
+Plug 'lifepillar/vim-solarized8'
+Plug 'preservim/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive'
+
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'jparise/vim-graphql'
+
+call plug#end()
+
+" color
+syntax enable
+set background=dark
+colorscheme solarized8
 
 set number
 set autoindent
 set backspace=2
+" 文件检测
+:filetype on
+:filetype plugin on
+:filetype indent on
 
 " 缩进
 set tabstop=4
@@ -14,10 +42,11 @@ set shiftwidth=4
 set expandtab
 " 忽略大小写，高亮搜索，增量搜索
 set ic hls is
-" 文件检测
-:filetype on
-:filetype plugin on
-:filetype indent on
+
+set foldlevelstart=0
+set foldlevel=99
+
+" autocmd vimenter * NERDTree
 " Python 文件专享
 :autocmd FileType python :set foldlevel=0
 :autocmd FileType python :set softtabstop=4
@@ -29,6 +58,7 @@ set ic hls is
 
 :autocmd FileType go :set foldmethod=indent
 :autocmd FileType xml :set foldmethod=indent
+:autocmd FileType json :set foldmethod=syntax
 " 分屏快捷键映射
 map <c-h> <c-w>h
 map <c-j> <c-w>j
@@ -38,27 +68,36 @@ map <c-l> <c-w>l
 set list
 set listchars=tab:▸\ ,eol:¬
 " 配色
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
 
 " 显示状态栏
 set laststatus=2
 " 显示行列
 set ruler
-
+" 显示 offset(byte)
+" set statusline+=%o
 set belloff=all
-let g:go_fmt_autosave = 0
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-nmap <F8> :TagbarToggle<CR>
-
-autocmd BufEnter SConstruct :setlocal filetype=python
-autocmd BufEnter SConscript :setlocal filetype=python
-
-" ctags
-map <F9> :!ctags -R -f ~/.language_tags/.python.tags `python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-" ctags -> gutentags
-let g:gutentags_ctags_tagfile = '.gutentags'
-:autocmd FileType python :set tags+=~/.language_tags/.python.tags
-
 " 提示音
 set noeb
+
+" plugin: tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" vim-go
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_options = {
+  \ 'gofmt': '-s',
+  \ 'goimports': '-local dev.rcrai.com'
+  \ }
+let g:go_echo_command_info = 1
+let g:go_fmt_experimental = 1
+let g:go_auto_fmt = 0
+
+let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode', 'typecheck', 'golint']
+
+" Set the filetype based on the file's extension, but only if
+" 'filetype' has not already been set
+au BufRead,BufNewFile *.gotpl setfiletype gotexttmpl

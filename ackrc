@@ -1,2 +1,6 @@
 --ignore-file=match:.*_test.go
 --ignore-file=is:.gutentags
+--ignore-file=is:go.sum
+
+--ignore-dir=vendor
+--ignore-dir=third_party
