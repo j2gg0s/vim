@@ -1,4 +1,4 @@
---ignore-file=match:.*_test.go
+# --ignore-file=match:.*_test.go
 --ignore-file=is:.gutentags
 --ignore-file=is:go.sum
 
