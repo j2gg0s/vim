@@ -62,7 +62,7 @@ setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=%-G#\ %.%#,%-G%.%#panic:\ %m,%Ecan't\ load\ package:\ %m,%A%\\%%(%[%^:]%\\+:\ %\\)%\\?%f:%l:%c:\ %m,%A%\\%%(%[%^:]%\\+:\ %\\)%\\?%f:%l:\ %m,%C%*\\s%m,%-G%.%#
 setlocal noexpandtab
 if &filetype != 'go'
 setlocal filetype=go
@@ -152,27 +152,30 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-257
+227
 normal! zo
-258
+228
 normal! zo
-261
+234
 normal! zo
-266
+240
 normal! zo
+227
+normal! zc
 269
 normal! zo
-274
+270
 normal! zo
-277
+305
 normal! zo
-let s:l = 257 - ((73 * winheight(0) + 22) / 44)
+306
+normal! zo
+let s:l = 305 - ((102 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-257
-normal! 041|
+305
+normal! 036|
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 " vim: set ft=vim :

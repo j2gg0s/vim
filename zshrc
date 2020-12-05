@@ -126,3 +126,9 @@ export PATH="/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:
 
 alias startproxy="export all_proxy=socks5://127.0.0.1:1086 && export http_proxy=http://127.0.0.1:1087 && export https_proxy=http://127.0.0.1:1087"
 alias stopproxy="unset all_proxy && unset http_proxy && unset https_proxy"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

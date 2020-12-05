@@ -152,47 +152,192 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-388
+40
 normal! zo
-391
+75
 normal! zo
-392
+78
 normal! zo
-394
+92
 normal! zo
-401
+99
 normal! zo
-402
+100
 normal! zo
-404
+101
 normal! zo
-411
+106
 normal! zo
-412
+108
 normal! zo
-415
+109
 normal! zo
-416
+111
 normal! zo
-418
+117
 normal! zo
-421
+121
 normal! zo
-422
+125
 normal! zo
-424
+126
 normal! zo
-427
+138
 normal! zo
-432
+142
 normal! zo
-let s:l = 432 - ((27 * winheight(0) + 23) / 46)
+144
+normal! zo
+148
+normal! zo
+153
+normal! zo
+158
+normal! zo
+159
+normal! zo
+164
+normal! zo
+168
+normal! zo
+172
+normal! zo
+174
+normal! zo
+178
+normal! zo
+182
+normal! zo
+187
+normal! zo
+190
+normal! zo
+192
+normal! zo
+193
+normal! zo
+197
+normal! zo
+199
+normal! zo
+200
+normal! zo
+204
+normal! zo
+206
+normal! zo
+207
+normal! zo
+211
+normal! zo
+213
+normal! zo
+214
+normal! zo
+218
+normal! zo
+221
+normal! zo
+226
+normal! zo
+227
+normal! zo
+229
+normal! zo
+231
+normal! zo
+234
+normal! zo
+235
+normal! zo
+242
+normal! zo
+246
+normal! zo
+247
+normal! zo
+249
+normal! zo
+251
+normal! zo
+256
+normal! zo
+257
+normal! zo
+259
+normal! zo
+261
+normal! zo
+266
+normal! zo
+268
+normal! zo
+270
+normal! zo
+275
+normal! zo
+279
+normal! zo
+281
+normal! zo
+283
+normal! zo
+285
+normal! zo
+287
+normal! zo
+293
+normal! zo
+300
+normal! zo
+303
+normal! zo
+305
+normal! zo
+310
+normal! zo
+314
+normal! zo
+315
+normal! zo
+319
+normal! zo
+325
+normal! zo
+326
+normal! zo
+334
+normal! zo
+338
+normal! zo
+343
+normal! zo
+345
+normal! zo
+349
+normal! zo
+353
+normal! zo
+354
+normal! zo
+356
+normal! zo
+358
+normal! zo
+361
+normal! zo
+365
+normal! zo
+371
+normal! zo
+375
+normal! zo
+let s:l = 144 - ((25 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-432
-normal! 017|
+144
+normal! 020|
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 " vim: set ft=vim :

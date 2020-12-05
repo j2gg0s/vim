@@ -1,4 +1,7 @@
-# --ignore-file=match:.*_test.go
+--ignore-file=match:.*_test.go
+--ignore-file=match:.*.yml
+--ignore-file=match:.*.graphql
+--ignore-file=match:.*.json
 --ignore-file=is:.gutentags
 --ignore-file=is:go.sum
 

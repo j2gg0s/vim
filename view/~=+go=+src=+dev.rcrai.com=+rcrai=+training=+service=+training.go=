@@ -152,26 +152,16 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-215
+38
 normal! zo
-217
+207
 normal! zo
-218
-normal! zo
-219
-normal! zo
-228
-normal! zo
-230
-normal! zo
-232
-normal! zo
-let s:l = 235 - ((234 * winheight(0) + 23) / 46)
+let s:l = 207 - ((149 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-235
-normal! 013|
+207
+normal! 029|
 let &so = s:so_save | let &siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost

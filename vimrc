@@ -13,6 +13,8 @@ Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'pedrohdz/vim-yaml-folds'
+Plug 'uarun/vim-protobuf'
 
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
@@ -20,6 +22,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 Plug 'jparise/vim-graphql'
+Plug 'lifepillar/pgsql.vim'
 
 call plug#end()
 
@@ -57,6 +60,7 @@ set foldlevel=99
 :autocmd FileType rst :set softtabstop=4
 
 :autocmd FileType go :set foldmethod=indent
+:autocmd FileType gotpl :set expandtab
 :autocmd FileType xml :set foldmethod=indent
 :autocmd FileType json :set foldmethod=syntax
 " 分屏快捷键映射
@@ -101,3 +105,7 @@ let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'go
 " Set the filetype based on the file's extension, but only if
 " 'filetype' has not already been set
 au BufRead,BufNewFile *.gotpl setfiletype gotexttmpl
+au BufRead,BufNewFile *.api setfiletype proto
+
+" postgresql plugin
+let g:sql_type_default = 'pgsql'
