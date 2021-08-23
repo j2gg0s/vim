@@ -6,7 +6,7 @@ fi
 disable log
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/local/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/j2gg0s/.oh-my-zsh
@@ -94,11 +94,8 @@ source $ZSH/oh-my-zsh.sh
 alias tmux="tmux -2"
 
 export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 export GODIR=$HOME/go/src/github.com/golang/go
-
-if [[ $PATH != *"/usr/local/go/bin"* ]]; then
-    export PATH=/usr/local/go/bin:$PATH
-fi
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then
     export PATH=$GOPATH/bin:$PATH
@@ -108,21 +105,30 @@ if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then
     export PATH=$PATH:/usr/local/opt/libpq/bin/
 fi
 
-if [[ $PATH != *"/usr/local/Cellar/python@3.7/3.7.9/bin"* ]]; then
-    export PATH=$PATH:/usr/local/Cellar/python@3.7/3.7.9/bin
+if [[ $PATH != *"/usr/local/Cellar/python@3.7/3.7.9_2/bin"* ]]; then
+    export PATH=$PATH:/usr/local/Cellar/python@3.7/3.7.9_2/bin
 fi
 
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+if [[ $PATH != *"/usr/local/opt/coreutils/libexec/gnubin"* ]]; then
+    export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
+fi
+
+if [[ $PATH != *"/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin"* ]]; then
+    export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin
+fi
+
+if [[ $PATH != *"/usr/local/Cellar/mysql-client@5.7/5.7.32/bin"* ]]; then
+    export PATH=$PATH:/usr/local/Cellar/mysql-client@5.7/5.7.32/bin
+fi
 
 
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE=dev.rcrai.com
+export GOPRIVATE="dev.rcrai.com,github.com/j2gg0s"
 export GO111MODULE=on
 
 # bash completion
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-export PATH="/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:$PATH"
 
 alias startproxy="export all_proxy=socks5://127.0.0.1:1086 && export http_proxy=http://127.0.0.1:1087 && export https_proxy=http://127.0.0.1:1087"
 alias stopproxy="unset all_proxy && unset http_proxy && unset https_proxy"
@@ -132,3 +138,13 @@ if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/Downloa
 
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export KUBECONFIG=~/.kube/config.yaml
+
+alias bitChart="cd $HOME/src/github.com/bitnami/charts"
+alias j2="cd $HOME/go/src/github.com/j2gg0s"
+
+[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+
+alias ctags="`brew --prefix`/bin/ctags"
+alias mysql8="/usr/local/Cellar/mysql-client/8.0.25/bin/mysql"

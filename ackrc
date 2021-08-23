@@ -1,9 +1,12 @@
---ignore-file=match:.*_test.go
---ignore-file=match:.*.yml
---ignore-file=match:.*.graphql
+#--ignore-file=match:.*_test.go
+--ignore-file=match:.*.sql
 --ignore-file=match:.*.json
+--ignore-file=match:.*.csv
+--ignore-file=match:.*.js
+#--ignore-file=match:.*.json
+--ignore-file=match:.*.graphql
 --ignore-file=is:.gutentags
 --ignore-file=is:go.sum
 
---ignore-dir=vendor
---ignore-dir=third_party
+# --ignore-dir=vendor
+# --ignore-dir=third_party

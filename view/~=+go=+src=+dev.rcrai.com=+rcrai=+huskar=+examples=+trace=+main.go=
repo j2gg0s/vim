@@ -1,5 +1,6 @@
-let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 argglobal
+balt ~/go/src/dev.rcrai.com/rcrai/huskar/examples/trace/huskar.yaml
 nnoremap <buffer> <silent>  :call go#def#StackPop(v:count1)
 nnoremap <buffer> <silent> ] :call go#def#Jump("split", 0)
 nnoremap <buffer> <silent>  :call go#def#Jump("split", 0)
@@ -154,26 +155,20 @@ setlocal wrap
 setlocal wrapmargin=0
 4
 normal! zo
-29
+45
 normal! zo
-41
+46
 normal! zo
-42
+117
 normal! zo
-52
+122
 normal! zo
-104
-normal! zo
-109
-normal! zo
-164
-normal! zo
-let s:l = 12 - ((11 * winheight(0) + 23) / 46)
+let s:l = 138 - ((48 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-12
-normal! 05|
-let &so = s:so_save | let &siso = s:siso_save
+keepjumps 138
+normal! 01|
+let &g:so = s:so_save | let &g:siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
