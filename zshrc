@@ -130,8 +130,8 @@ export GO111MODULE=on
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-alias startproxy="export all_proxy=socks5://127.0.0.1:1086 && export http_proxy=http://127.0.0.1:1087 && export https_proxy=http://127.0.0.1:1087"
-alias stopproxy="unset all_proxy && unset http_proxy && unset https_proxy"
+alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
+alias stopproxy="unset http_proxy && unset https_proxy"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/path.zsh.inc'; fi

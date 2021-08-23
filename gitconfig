@@ -1,0 +1,17 @@
+[url "git@github.com:"]
+    instaedOf = https://github.com/
+[core]
+	excludesfile = /Users/j2gg0s/.gitignore
+[user]
+    name = j2gg0s
+	email = j2gg0s@gmail.com
+[push]
+	default = current
+	followTags = true
+[http]
+    proxy = http://127.0.0.1:1087
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

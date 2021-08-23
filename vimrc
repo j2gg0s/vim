@@ -39,7 +39,10 @@ call plug#end()
 " color
 syntax enable
 set background=dark
-colorscheme solarized8
+let g:solarized_termtrans = 1 " This gets rid of the grey background
+colorscheme solarized8_low
+hi clear SpecialKey
+hi SpecialKey term=bold cterm=bold ctermfg=66 gui=bold guifg=Blue
 
 set number
 set autoindent
@@ -85,9 +88,6 @@ map <c-l> <c-w>l
 " 利用特殊的符号来区分 tab 和 space
 set list
 set listchars=tab:▸\ ,eol:¬
-" 配色
-" set background=dark
-" colorscheme solarized
 
 " 显示状态栏
 set laststatus=2
