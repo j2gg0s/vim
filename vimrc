@@ -4,6 +4,8 @@
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_ZH = "\e[3m"
+let &t_ZR = "\e[23m"
 
 " https://github.com/junegunn/vim-plug
 call plug#begin("~/.vim/plugged")
@@ -40,9 +42,7 @@ call plug#end()
 syntax enable
 set background=dark
 let g:solarized_termtrans = 1 " This gets rid of the grey background
-colorscheme solarized8_low
-hi clear SpecialKey
-hi SpecialKey term=bold cterm=bold ctermfg=66 gui=bold guifg=Blue
+colorscheme solarized8
 
 set number
 set autoindent
