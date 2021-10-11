@@ -117,13 +117,13 @@ if [[ $PATH != *"/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/
     export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin
 fi
 
-if [[ $PATH != *"/usr/local/Cellar/mysql-client@5.7/5.7.32/bin"* ]]; then
-    export PATH=$PATH:/usr/local/Cellar/mysql-client@5.7/5.7.32/bin
+if [[ $PATH != *"/usr/local/Cellar/mysql@5.7/5.7.35/bin"* ]]; then
+    export PATH=$PATH:/usr/local/Cellar/mysql@5.7/5.7.35/bin
 fi
 
 
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="dev.rcrai.com,github.com/j2gg0s"
+export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
 export GO111MODULE=on
 
 # bash completion

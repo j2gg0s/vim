@@ -43,6 +43,7 @@ syntax enable
 set background=dark
 let g:solarized_termtrans = 1 " This gets rid of the grey background
 colorscheme solarized8
+highlight SpecialKey ctermbg=None ctermfg=66
 
 set number
 set autoindent
