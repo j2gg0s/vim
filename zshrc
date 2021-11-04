@@ -122,7 +122,7 @@ if [[ $PATH != *"/usr/local/Cellar/mysql@5.7/5.7.35/bin"* ]]; then
 fi
 
 
-export GOPROXY=https://goproxy.cn,direct
+export GOPROXY=https://goproxy.io,direct
 export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
 export GO111MODULE=on
 
@@ -130,21 +130,13 @@ export GO111MODULE=on
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
-alias stopproxy="unset http_proxy && unset https_proxy"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 export KUBECONFIG=~/.kube/config.yaml
 
-alias bitChart="cd $HOME/src/github.com/bitnami/charts"
-alias j2="cd $HOME/go/src/github.com/j2gg0s"
+[[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
 
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 
+# alias
 alias ctags="`brew --prefix`/bin/ctags"
-alias mysql8="/usr/local/Cellar/mysql-client/8.0.25/bin/mysql"
+alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
+alias stopproxy="unset http_proxy && unset https_proxy"
+alias vim="/usr/local/opt/vim/bin/vim"

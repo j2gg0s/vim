@@ -35,6 +35,7 @@ Plug 'prettier/vim-prettier'
 " Plug 'mattn/vim-lsp-settings'
 "
 Plug 'google/vim-jsonnet'
+Plug 'elubow/cql-vim'
 
 call plug#end()
 
@@ -74,6 +75,9 @@ set foldlevel=99
 :autocmd FileType rst :set softtabstop=4
 
 :autocmd FileType go :set foldmethod=indent
+:command GR GoReferrers
+:command GC GoCallers
+
 :autocmd FileType gotpl :set expandtab
 :autocmd FileType xml :set foldmethod=indent
 :autocmd FileType json :set foldmethod=syntax
