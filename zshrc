@@ -113,12 +113,16 @@ if [[ $PATH != *"/usr/local/opt/coreutils/libexec/gnubin"* ]]; then
     export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 fi
 
-if [[ $PATH != *"/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin"* ]]; then
-    export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin
+if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then
+    export PATH=$PATH:/opt/homebrew/opt/openjdk/bin
 fi
 
 if [[ $PATH != *"/usr/local/Cellar/mysql@5.7/5.7.35/bin"* ]]; then
     export PATH=$PATH:/usr/local/Cellar/mysql@5.7/5.7.35/bin
+fi
+
+if [[ $PATH != *"/opt/homebrew/bin"* ]]; then
+    export PATH=/opt/homebrew/bin:$PATH
 fi
 
 
@@ -139,4 +143,17 @@ export KUBECONFIG=~/.kube/config.yaml
 alias ctags="`brew --prefix`/bin/ctags"
 alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
 alias stopproxy="unset http_proxy && unset https_proxy"
-alias vim="/usr/local/opt/vim/bin/vim"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export GOPROXY="goproxy.cn,direct"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+source "/Users/j2gg0s/.sdkman/bin/sdkman-init.sh"
+
+alias k="kubectl"
+alias klogs="kubectl logs"
+alias kget="kubectl get"
+
+export HOMEBREW_NO_AUTO_UPDATE=1

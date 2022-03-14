@@ -1,5 +1,7 @@
-[url "git@github.com:"]
-    instaedOf = https://github.com/
+[url "git@github.com:j2gg0s"]
+    insteadOf = https://github.com/j2gg0s
+[url "git@github.com:echoingtech"]
+    insteadOf = https://github.com/echoingtech
 [core]
 	excludesfile = /Users/j2gg0s/.gitignore
 [user]
@@ -8,8 +10,6 @@
 [push]
 	default = current
 	followTags = true
-[http]
-    proxy = http://127.0.0.1:8118
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -17,3 +17,5 @@
 	required = true
 [pull]
     ff = true
+[http "https://github.com/"]
+    proxy = http://127.0.0.1:8118/

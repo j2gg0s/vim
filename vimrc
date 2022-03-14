@@ -77,6 +77,7 @@ set foldlevel=99
 :autocmd FileType go :set foldmethod=indent
 :command GR GoReferrers
 :command GC GoCallers
+:command GI GoImplements
 
 :autocmd FileType gotpl :set expandtab
 :autocmd FileType xml :set foldmethod=indent
@@ -184,3 +185,5 @@ let g:prettier#autoformat_require_pragma = 0
 "     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 " augroup END
 " vim-lsp
+"
+let g:wakatime_CLIPath = "/Users/j2gg0s/go/bin/wakatime-cli"
