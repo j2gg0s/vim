@@ -37,6 +37,8 @@ Plug 'prettier/vim-prettier'
 Plug 'google/vim-jsonnet'
 Plug 'elubow/cql-vim'
 
+Plug 'gurpreetatwal/vim-avro'
+
 call plug#end()
 
 " color

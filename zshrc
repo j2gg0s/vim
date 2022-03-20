@@ -117,8 +117,8 @@ if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then
     export PATH=$PATH:/opt/homebrew/opt/openjdk/bin
 fi
 
-if [[ $PATH != *"/usr/local/Cellar/mysql@5.7/5.7.35/bin"* ]]; then
-    export PATH=$PATH:/usr/local/Cellar/mysql@5.7/5.7.35/bin
+if [[ $PATH != *"/usr/local/opt/mysql@5.7/bin"* ]]; then
+    export PATH=$PATH:/usr/local/opt/mysql@5.7/bin
 fi
 
 if [[ $PATH != *"/opt/homebrew/bin"* ]]; then
@@ -126,7 +126,7 @@ if [[ $PATH != *"/opt/homebrew/bin"* ]]; then
 fi
 
 
-export GOPROXY=https://goproxy.io,direct
+export GOPROXY=https://goproxy.cn,direct
 export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
 export GO111MODULE=on
 
@@ -145,6 +145,7 @@ alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=htt
 alias stopproxy="unset http_proxy && unset https_proxy"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export GOPROXY="goproxy.cn,direct"
+alias vim="/usr/local/opt/vim/bin/vim"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
