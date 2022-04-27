@@ -96,6 +96,8 @@ alias tmux="tmux -2"
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export GODIR=$HOME/go/src/github.com/golang/go
+export GOPROXY=https://goproxy.cn,direct
+export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then
     export PATH=$GOPATH/bin:$PATH
@@ -126,10 +128,6 @@ if [[ $PATH != *"/opt/homebrew/bin"* ]]; then
 fi
 
 
-export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
-export GO111MODULE=on
-
 # bash completion
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
@@ -144,7 +142,6 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
 alias stopproxy="unset http_proxy && unset https_proxy"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export GOPROXY="goproxy.cn,direct"
 alias vim="/usr/local/opt/vim/bin/vim"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -154,7 +151,13 @@ export SDKMAN_DIR="$HOME/.sdkman"
 source "/Users/j2gg0s/.sdkman/bin/sdkman-init.sh"
 
 alias k="kubectl"
+alias g="git"
 alias klogs="kubectl logs"
 alias kget="kubectl get"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+export REDO_HISTORY_PATH=/Users/j2gg0s/.zsh_history
+export REDO_EDITOR=vim
+export REDO_ALIAS_PATH=/Users/j2gg0s/.redo
+source $(redo alias-file)

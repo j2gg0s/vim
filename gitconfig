@@ -1,7 +1,7 @@
 [url "git@github.com:j2gg0s"]
     insteadOf = https://github.com/j2gg0s
-[url "git@github.com:echoingtech"]
-    insteadOf = https://github.com/echoingtech
+[url "https://github.com/echoingtech"]
+    insteadOf = git@github.com:echoingtech
 [core]
 	excludesfile = /Users/j2gg0s/.gitignore
 [user]
