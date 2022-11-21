@@ -1,9 +1,9 @@
 [url "git@github.com:j2gg0s"]
     insteadOf = https://github.com/j2gg0s
-[url "https://github.com/echoingtech"]
-    insteadOf = git@github.com:echoingtech
+[url "git@g.echo.tech:"]
+    insteadOf = http://g.echo.tech/
 [core]
-	excludesfile = /Users/j2gg0s/.gitignore
+	excludesfile = ~/.gitignore
 [user]
     name = j2gg0s
 	email = j2gg0s@gmail.com
@@ -19,3 +19,6 @@
     ff = true
 [http "https://github.com/"]
     proxy = http://127.0.0.1:8118/
+
+[includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
+  path = ~/.vim/echo-gitconfig

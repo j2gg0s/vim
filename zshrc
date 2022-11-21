@@ -97,35 +97,13 @@ export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export GODIR=$HOME/go/src/github.com/golang/go
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="github.com/echoingtech,github.com/j2gg0s"
+export GOPRIVATE="github.com/echoingtech,g.echo.tech,github.com/j2gg0s"
 
-if [[ $PATH != *"$GOPATH/bin"* ]]; then
-    export PATH=$GOPATH/bin:$PATH
-fi
-
-if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then
-    export PATH=$PATH:/usr/local/opt/libpq/bin/
-fi
-
-if [[ $PATH != *"/usr/local/Cellar/python@3.7/3.7.9_2/bin"* ]]; then
-    export PATH=$PATH:/usr/local/Cellar/python@3.7/3.7.9_2/bin
-fi
-
-if [[ $PATH != *"/usr/local/opt/coreutils/libexec/gnubin"* ]]; then
-    export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
-fi
-
-if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then
-    export PATH=$PATH:/opt/homebrew/opt/openjdk/bin
-fi
-
-if [[ $PATH != *"/usr/local/opt/mysql@5.7/bin"* ]]; then
-    export PATH=$PATH:/usr/local/opt/mysql@5.7/bin
-fi
-
-if [[ $PATH != *"/opt/homebrew/bin"* ]]; then
-    export PATH=/opt/homebrew/bin:$PATH
-fi
+if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
+if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then export PATH=$PATH:/usr/local/opt/libpq/bin/; fi
+if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=$PATH:/opt/homebrew/bin; fi
+if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=/opt/homebrew/opt/openjdk/bin:$PATH; fi
+if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
 
 
 # bash completion
@@ -141,14 +119,9 @@ export KUBECONFIG=~/.kube/config.yaml
 alias ctags="`brew --prefix`/bin/ctags"
 alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
 alias stopproxy="unset http_proxy && unset https_proxy"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-alias vim="/usr/local/opt/vim/bin/vim"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-source "/Users/j2gg0s/.sdkman/bin/sdkman-init.sh"
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
 
 alias k="kubectl"
 alias g="git"
@@ -157,7 +130,4 @@ alias kget="kubectl get"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-export REDO_HISTORY_PATH=/Users/j2gg0s/.zsh_history
-export REDO_EDITOR=vim
-export REDO_ALIAS_PATH=/Users/j2gg0s/.redo
-source $(redo alias-file)
+. /opt/homebrew/etc/profile.d/z.sh
