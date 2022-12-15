@@ -131,3 +131,5 @@ alias kget="kubectl get"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 . /opt/homebrew/etc/profile.d/z.sh
+
+export LUA_PATH="?;?.lua;/Users/j2gg0s/lua/lib/?.lua"

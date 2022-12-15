@@ -1,6 +1,5 @@
 " nerdtree
 " execute pathogen#infect()
-
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -26,7 +25,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'jparise/vim-graphql'
 Plug 'lifepillar/pgsql.vim'
 
-Plug 'wakatime/vim-wakatime'
 Plug 'lifepillar/pgsql.vim'
 
 Plug 'pangloss/vim-javascript'
