@@ -37,6 +37,10 @@ Plug 'elubow/cql-vim'
 
 Plug 'gurpreetatwal/vim-avro'
 
+" C++
+Plug 'derekwyatt/vim-fswitch'
+Plug 'prabirshrestha/vim-lsp'
+
 call plug#end()
 
 " color
@@ -76,9 +80,6 @@ set foldlevel=99
 
 :autocmd FileType go :set foldmethod=indent
 :autocmd FileType go :set shiftwidth=4
-:command GR GoReferrers
-:command GC GoCallers
-:command GI GoImplements
 
 :autocmd FileType gotpl :set expandtab
 :autocmd FileType xml :set foldmethod=indent
@@ -87,6 +88,11 @@ set foldlevel=99
 :autocmd FileType javascript :set tabstop=2
 :autocmd FileType javascript :set softtabstop=2
 :autocmd FileType javascript :set shiftwidth=2
+
+:autocmd FileType cpp :set foldmethod=syntax
+:autocmd FileType cpp :set foldlevelstart=1
+:autocmd FileType cpp :set foldlevel=99
+
 " 分屏快捷键映射
 map <c-h> <c-w>h
 map <c-j> <c-w>j
@@ -148,3 +154,38 @@ let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 "
 let g:wakatime_CLIPath = "/Users/j2gg0s/go/bin/wakatime-cli"
+
+" fswitch
+au! BufEnter *.cc let b:fswitchdst = 'h,hpp'
+au! BufEnter *.h let b:fswitchdst = 'cc'
+
+" vim-lsp for c++
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cc', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    augroup end
+endif
+
+augroup lsp
+  autocmd!
+  autocmd FileType go :command GoImp GoImplements
+  autocmd FileType go :command GoRef GoReferrers
+
+  autocmd FileType cpp :command GoDef LspDefinition
+  autocmd FileType cpp :command GoCallers LspCallHierarchyIncoming
+  autocmd FileType cpp :command GoDecls LspDeclaration
+
+  autocmd FileType cpp :command GoImp LspImplementation
+  autocmd FileType cpp :command GoRef LspReferences
+
+  autocmd FileType cpp :nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+augroup END

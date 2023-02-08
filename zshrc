@@ -132,4 +132,4 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 . /opt/homebrew/etc/profile.d/z.sh
 
-export LUA_PATH="?;?.lua;/Users/j2gg0s/lua/lib/?.lua"
+export LUA_PATH="?;?.lua;/Users/j2gg0s/lua/lib/?.lua;/Users/j2gg0s/go/src/g.echo.tech/dev/devops/istio/signature/sha2.lua"
