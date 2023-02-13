@@ -89,9 +89,10 @@ set foldlevel=99
 :autocmd FileType javascript :set softtabstop=2
 :autocmd FileType javascript :set shiftwidth=2
 
-:autocmd FileType cpp :set foldmethod=syntax
-:autocmd FileType cpp :set foldlevelstart=1
-:autocmd FileType cpp :set foldlevel=99
+:autocmd FileType cpp setlocal 
+    \ foldmethod=syntax
+    \ foldlevelstart=1
+    \ foldlevel=99
 
 " 分屏快捷键映射
 map <c-h> <c-w>h
@@ -161,7 +162,7 @@ au! BufEnter *.h let b:fswitchdst = 'cc'
 
 " vim-lsp for c++
 if executable('clangd')
-    augroup lsp_clangd
+    augroup j2_lsp_clangd
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'clangd',
@@ -172,20 +173,24 @@ if executable('clangd')
         autocmd FileType cpp setlocal omnifunc=lsp#complete
         autocmd FileType objc setlocal omnifunc=lsp#complete
         autocmd FileType objcpp setlocal omnifunc=lsp#complete
-    augroup end
+    augroup END
 endif
 
-augroup lsp
+augroup j2_lsp
   autocmd!
-  autocmd FileType go :command GoImp GoImplements
-  autocmd FileType go :command GoRef GoReferrers
+  autocmd FileType go command! GD GoDef
+  autocmd FileType go command! GI GoImplements
+  autocmd FileType go command! GR GoReferrers
+  autocmd FileType go command! GC GoCallers
 
-  autocmd FileType cpp :command GoDef LspDefinition
-  autocmd FileType cpp :command GoCallers LspCallHierarchyIncoming
-  autocmd FileType cpp :command GoDecls LspDeclaration
+  autocmd FileType c,cpp command! GD LspDefinition
+  autocmd FileType c,cpp command! GI LspImplementation
+  autocmd FileType c,cpp command! GR LspReferences
+  autocmd FileType c,cpp command! GC LspCallHierarchyIncoming
 
-  autocmd FileType cpp :command GoImp LspImplementation
-  autocmd FileType cpp :command GoRef LspReferences
+  autocmd FileType c,cpp command! GoDecls LspDeclaration
 
-  autocmd FileType cpp :nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+  autocmd FileType c,cpp nnoremap <buffer> <C-]> :LspDefinition<CR>
 augroup END
+
+let g:lsp_document_code_action_signs_enabled = 0
