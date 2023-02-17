@@ -22,3 +22,5 @@
 
 [includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
   path = ~/.vim/echo-gitconfig
+[safe]
+	directory = /work

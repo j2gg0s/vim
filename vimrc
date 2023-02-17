@@ -65,7 +65,6 @@ set expandtab
 " 忽略大小写，高亮搜索，增量搜索
 set ic hls is
 
-set foldlevelstart=0
 set foldlevel=99
 
 " autocmd vimenter * NERDTree
@@ -91,7 +90,7 @@ set foldlevel=99
 
 :autocmd FileType cpp setlocal 
     \ foldmethod=syntax
-    \ foldlevelstart=1
+    \ foldlevelstart=99
     \ foldlevel=99
 
 " 分屏快捷键映射
