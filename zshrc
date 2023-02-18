@@ -1,3 +1,7 @@
+OS_="Darwin"
+if [[ $(uname -s) == "Linux" ]]; then OS_="Linux"; fi
+
+#
 # Correctly display UTF-8 with combining characters.
 if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
 	setopt combiningchars
@@ -101,9 +105,11 @@ export GOPRIVATE="github.com/echoingtech,g.echo.tech,github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
 if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then export PATH=$PATH:/usr/local/opt/libpq/bin/; fi
-if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=$PATH:/opt/homebrew/bin; fi
-if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=/opt/homebrew/opt/openjdk/bin:$PATH; fi
-if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
+if [[ _OS == "Darwin" ]]; then
+  if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=$PATH:/opt/homebrew/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=/opt/homebrew/opt/openjdk/bin:$PATH; fi
+  if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
+fi
 
 
 # bash completion
@@ -114,22 +120,30 @@ export KUBECONFIG=~/.kube/config.yaml
 
 [[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
 
+# proxy
+if [[ -e /.dockerenv ]]; then
+  alias startproxy="export https_proxy=http://host.docker.internal:8118;export http_proxy=http://host.docker.internal:8118"
+  alias stopproxy="unset http_proxy && unset https_proxy"
+
+  export http_proxy=http://host.docker.internal:8118
+  export https_proxy=http://host.docker.internal:8118
+else
+  alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
+  alias stopproxy="unset http_proxy && unset https_proxy"
+
+  export http_proxy=http://127.0.0.1:8118
+  export https_proxy=http://127.0.0.1:8118
+fi
 
 # alias
-alias ctags="`brew --prefix`/bin/ctags"
-alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
-alias stopproxy="unset http_proxy && unset https_proxy"
-
-export http_proxy=http://127.0.0.1:8118
-export https_proxy=http://127.0.0.1:8118
+if [[ _OS == "Darwin" ]]; then
+  alias ctags="`brew --prefix`/bin/ctags"
+  export HOMEBREW_NO_AUTO_UPDATE=1
+fi
 
 alias k="kubectl"
 alias g="git"
 alias klogs="kubectl logs"
 alias kget="kubectl get"
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
-. rupa_z.sh
-
-export LUA_PATH="?;?.lua;/Users/j2gg0s/lua/lib/?.lua;/Users/j2gg0s/go/src/g.echo.tech/dev/devops/istio/signature/sha2.lua"
+. $HOME/.vim/rupa_z.sh
