@@ -105,7 +105,7 @@ export GOPRIVATE="github.com/echoingtech,g.echo.tech,github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
 if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then export PATH=$PATH:/usr/local/opt/libpq/bin/; fi
-if [[ _OS == "Darwin" ]]; then
+if [[ $OS_ == "Darwin" ]]; then
   if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=$PATH:/opt/homebrew/bin; fi
   if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=/opt/homebrew/opt/openjdk/bin:$PATH; fi
   if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
@@ -136,7 +136,7 @@ else
 fi
 
 # alias
-if [[ _OS == "Darwin" ]]; then
+if [[ $OS_ == "Darwin" ]]; then
   alias ctags="`brew --prefix`/bin/ctags"
   export HOMEBREW_NO_AUTO_UPDATE=1
 fi
