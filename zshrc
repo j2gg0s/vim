@@ -13,7 +13,7 @@ disable log
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/j2gg0s/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -121,19 +121,11 @@ export KUBECONFIG=~/.kube/config.yaml
 [[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
 
 # proxy
-if [[ -e /.dockerenv ]]; then
-  alias startproxy="export https_proxy=http://host.docker.internal:8118;export http_proxy=http://host.docker.internal:8118"
-  alias stopproxy="unset http_proxy && unset https_proxy"
+alias startproxy="export https_proxy=http://j2gg0s-osx.local:8118;export http_proxy=http://j2gg0s-osx.local:8118"
+alias stopproxy="unset http_proxy && unset https_proxy"
 
-  export http_proxy=http://host.docker.internal:8118
-  export https_proxy=http://host.docker.internal:8118
-else
-  alias startproxy="export https_proxy=http://127.0.0.1:8118;export http_proxy=http://127.0.0.1:8118"
-  alias stopproxy="unset http_proxy && unset https_proxy"
-
-  export http_proxy=http://127.0.0.1:8118
-  export https_proxy=http://127.0.0.1:8118
-fi
+export http_proxy=http://j2gg0s-osx.local:8118
+export https_proxy=http://j2gg0s-osx.local:8118
 
 # alias
 if [[ $OS_ == "Darwin" ]]; then
