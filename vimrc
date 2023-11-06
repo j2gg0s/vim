@@ -14,7 +14,7 @@ Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
-" Plug 'pedrohdz/vim-yaml-folds'
+Plug 'pedrohdz/vim-yaml-folds'
 Plug 'uarun/vim-protobuf'
 
 " If you don't have nodejs and yarn
@@ -29,8 +29,6 @@ Plug 'lifepillar/pgsql.vim'
 
 Plug 'pangloss/vim-javascript'
 Plug 'prettier/vim-prettier'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
 "
 Plug 'google/vim-jsonnet'
 Plug 'elubow/cql-vim'
@@ -40,6 +38,7 @@ Plug 'gurpreetatwal/vim-avro'
 " C++
 Plug 'derekwyatt/vim-fswitch'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
@@ -77,21 +76,24 @@ set foldlevel=99
 :autocmd FileType rst :set foldmethod=indent
 :autocmd FileType rst :set softtabstop=4
 
-:autocmd FileType go :set foldmethod=indent
+:autocmd FileType go :set foldmethod=syntax
 :autocmd FileType go :set shiftwidth=4
 
 :autocmd FileType gotpl :set expandtab
-:autocmd FileType xml :set foldmethod=indent
+:autocmd FileType xml :set foldmethod=syntax
 :autocmd FileType json :set foldmethod=syntax
 
 :autocmd FileType javascript :set tabstop=2
 :autocmd FileType javascript :set softtabstop=2
 :autocmd FileType javascript :set shiftwidth=2
 
+:autocmd FileType yaml :set foldlevel=0
+
 :autocmd FileType cpp setlocal 
     \ foldmethod=syntax
     \ foldlevelstart=99
     \ foldlevel=99
+    \ shiftwidth=2
 
 " 分屏快捷键映射
 map <c-h> <c-w>h
@@ -113,7 +115,9 @@ set belloff=all
 set noeb
 
 " plugin: tagbar
-let g:tagbar_ctags_bin="/usr/bin/ctags"
+if has("gui_macvim")
+  let g:tagbar_ctags_bin="/opt/homebrew/bin/ctag"
+endif
 nmap <F8> :TagbarToggle<CR>
 
 " vim-go
@@ -160,36 +164,33 @@ au! BufEnter *.cc let b:fswitchdst = 'h,hpp'
 au! BufEnter *.h let b:fswitchdst = 'cc'
 
 " vim-lsp for c++
-if executable('clangd')
-    augroup j2_lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cc', 'cpp', 'objc', 'objcpp'],
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-        autocmd FileType objc setlocal omnifunc=lsp#complete
-        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-    augroup END
-endif
+let g:lsp_settings = {
+\ 'gopls': {'disabled': 1},
+\}
+"
+:autocmd FileType c setlocal omnifunc=lsp#complete
+:autocmd FileType cpp setlocal omnifunc=lsp#complete
+:autocmd FileType objc setlocal omnifunc=lsp#complete
+:autocmd FileType objcpp setlocal omnifunc=lsp#complete
 
-augroup j2_lsp
+augroup _lsp
   autocmd!
   autocmd FileType go command! GD GoDef
   autocmd FileType go command! GI GoImplements
   autocmd FileType go command! GR GoReferrers
   autocmd FileType go command! GC GoCallers
 
-  autocmd FileType c,cpp command! GD LspDefinition
-  autocmd FileType c,cpp command! GI LspImplementation
-  autocmd FileType c,cpp command! GR LspReferences
-  autocmd FileType c,cpp command! GC LspCallHierarchyIncoming
-
-  autocmd FileType c,cpp command! GoDecls LspDeclaration
-
-  autocmd FileType c,cpp nnoremap <buffer> <C-]> :LspDefinition<CR>
+  autocmd FileType c,cpp,python command! GD LspDefinition
+  autocmd FileType c,cpp,python command! GI LspImplementation
+  autocmd FileType c,cpp,python command! GR LspReferences
+  autocmd FileType c,cpp,python command! GC LspCallHierarchyIncoming
+  autocmd FileType c,cpp,python command! GoDecls LspDeclaration
+  autocmd FileType c,cpp,python nnoremap <buffer> <C-]> :LspDefinition<CR>
 augroup END
 
 let g:lsp_document_code_action_signs_enabled = 0
+
+" debug vim-lsp
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/logs/vim-lsp.log')
+let g:asyncomplete_log_file = expand('~/asyncomplete.log')
