@@ -1,0 +1,21 @@
+repos:
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.16.25
+    hooks:
+      - id: typos
+        args: [--force-exclude]
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.55.2
+    hooks:
+      - id: golangci-lint
+        exclude: ^(vendor|third_party)/
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1
+    hooks:
+      - id: go-fmt
+        exclude: ^(vendor|third_party)/
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1
+    hooks:
+      - id: go-mod-tidy
+        exclude: ^(vendor|third_party)/
