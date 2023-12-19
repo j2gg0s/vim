@@ -2,6 +2,9 @@
   insteadOf = https://github.com/j2gg0s
 [url "git@g.echo.tech:"]
   insteadOf = http://g.echo.tech/
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
 [user]
   name = j2gg0s
   email = j2gg0s@gmail.com
@@ -15,9 +18,9 @@
   required = true
 [pull]
   ff = true
-[includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
-  path = ~/.echo.gitconfig
 [safe]
   directory = /work
 [http "https://github.com/"]
   proxy = "j2gg0s-osx.local:8118"
+[includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
+  path = ~/.echo.gitconfig

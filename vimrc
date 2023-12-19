@@ -96,10 +96,10 @@ set foldlevel=99
     \ shiftwidth=2
 
 " 分屏快捷键映射
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
+noremap <c-h> <c-w>h
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
 " 利用特殊的符号来区分 tab 和 space
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -138,6 +138,7 @@ let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'go
 au BufRead,BufNewFile *.gotpl setfiletype gotexttmpl
 au BufRead,BufNewFile *.api setfiletype proto
 au BufRead,BufNewFile *.proto setfiletype proto
+au BufRead,BufNewFile *_test.go setfiletype gotest
 
 " postgresql plugin
 let g:sql_type_default = 'pgsql'
