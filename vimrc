@@ -38,7 +38,9 @@ Plug 'gurpreetatwal/vim-avro'
 " C++
 Plug 'derekwyatt/vim-fswitch'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'mattn/vim-lsp-settings'
+
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -143,9 +145,6 @@ au BufRead,BufNewFile *_test.go setfiletype gotest
 " postgresql plugin
 let g:sql_type_default = 'pgsql'
 
-" Jenkinsfile highlight
-au BufNewFile,BufRead Jenkinsfile setf groovy
-
 " TODO
 set mmp=2000
 
@@ -157,18 +156,33 @@ augroup END
 " prettier
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
-"
-let g:wakatime_CLIPath = "/Users/j2gg0s/go/bin/wakatime-cli"
 
 " fswitch
 au! BufEnter *.cc let b:fswitchdst = 'h,hpp'
 au! BufEnter *.h let b:fswitchdst = 'cc'
 
 " vim-lsp for c++
-let g:lsp_settings = {
-\ 'gopls': {'disabled': 1},
-\}
-"
+" let g:lsp_settings = {
+" \ 'gopls': {'disabled': 1},
+" \}
+
+" if executable('rust-analyzer')
+"   au User lsp_setup call lsp#register_server({
+"         \   'name': 'Rust Language Server',
+"         \   'cmd': {server_info->['rust-analyzer']},
+"         \   'whitelist': ['rust'],
+"         \ })
+" endif
+
+if executable('pylsp')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
 :autocmd FileType c setlocal omnifunc=lsp#complete
 :autocmd FileType cpp setlocal omnifunc=lsp#complete
 :autocmd FileType objc setlocal omnifunc=lsp#complete
@@ -181,12 +195,12 @@ augroup _lsp
   autocmd FileType go command! GR GoReferrers
   autocmd FileType go command! GC GoCallers
 
-  autocmd FileType c,cpp,python command! GD LspDefinition
-  autocmd FileType c,cpp,python command! GI LspImplementation
-  autocmd FileType c,cpp,python command! GR LspReferences
-  autocmd FileType c,cpp,python command! GC LspCallHierarchyIncoming
-  autocmd FileType c,cpp,python command! GoDecls LspDeclaration
-  autocmd FileType c,cpp,python nnoremap <buffer> <C-]> :LspDefinition<CR>
+  autocmd FileType c,cpp,python,rust command! GD LspDefinition
+  autocmd FileType c,cpp,python,rust command! GI LspImplementation
+  autocmd FileType c,cpp,python,rust command! GR LspReferences
+  autocmd FileType c,cpp,python,rust command! GC LspCallHierarchyIncoming
+  autocmd FileType c,cpp,python,rust command! GoDecls LspDeclaration
+  autocmd FileType c,cpp,python,rust nnoremap <buffer> <C-]> :LspDefinition<CR>
 augroup END
 
 let g:lsp_document_code_action_signs_enabled = 0

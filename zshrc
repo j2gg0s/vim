@@ -104,12 +104,10 @@ export GOPROXY=https://goproxy.cn,direct
 export GOPRIVATE="github.com/echoingtech,g.echo.tech,github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
-if [[ $PATH != *"/usr/local/opt/libpq/bin/"* ]]; then export PATH=$PATH:/usr/local/opt/libpq/bin/; fi
 if [[ $PATH != *"$HOME/.istioctl/bin"* ]]; then export PATH=$HOME/.istioctl/bin:$PATH; fi
-if [[ $PATH != *"$HOME/.cargo/bin/"* ]]; then export PATH=$PATH:$HOME/.cargo/bin/; fi
 if [[ $OS_ == "Darwin" ]]; then
-  if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=$PATH:/opt/homebrew/bin; fi
-  if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=/opt/homebrew/opt/openjdk/bin:$PATH; fi
+  if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=/opt/homebrew/bin:$PATH; fi
+  if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/openjdk/bin; fi
   if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
 fi
 
@@ -142,19 +140,3 @@ alias kget="kubectl get"
 
 . $HOME/.vim/rupa_z.sh
 source $HOME/.cargo/env
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/j2gg0s/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/j2gg0s/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/j2gg0s/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/j2gg0s/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
