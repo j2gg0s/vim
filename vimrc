@@ -70,7 +70,6 @@ set foldlevel=99
 
 " autocmd vimenter * NERDTree
 " Python 文件专享
-:autocmd FileType python :set foldlevel=0
 :autocmd FileType python :set softtabstop=4
 :autocmd FileType python :set foldmethod=indent
 " rst 文件

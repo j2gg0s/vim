@@ -1,7 +1,7 @@
 [url "git@github.com:j2gg0s"]
   insteadOf = https://github.com/j2gg0s
-[url "git@g.echo.tech:"]
-  insteadOf = http://g.echo.tech/
+[url "git@gitlab.com:jakiros"]
+  insteadOf = https://gitlab.com/jakiros
 [core]
   excludesfile = ~/.gitignore
   editor = vim
@@ -21,6 +21,8 @@
 [safe]
   directory = /work
 [http "https://github.com/"]
-  proxy = "j2gg0s-osx.local:8118"
+  proxy = "localhost:8118"
+[http "https://gitlab.com/"]
+  proxy = "locahost:8118"
 [includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
   path = ~/.echo.gitconfig
