@@ -88,8 +88,6 @@ set foldlevel=99
 :autocmd FileType javascript :set softtabstop=2
 :autocmd FileType javascript :set shiftwidth=2
 
-:autocmd FileType yaml :set foldlevel=0
-
 :autocmd FileType cpp setlocal 
     \ foldmethod=syntax
     \ foldlevelstart=99

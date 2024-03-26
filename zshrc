@@ -7,7 +7,7 @@ if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
 	setopt combiningchars
 fi
 
-disable log
+# disable log
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -99,12 +99,11 @@ alias tmux="tmux -2"
 
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
-export GODIR=$HOME/go/src/github.com/golang/go
+export GODIR=$HOME/go/src/github.com/go
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="github.com/echoingtech,g.echo.tech,github.com/j2gg0s"
+export GOPRIVATE="dev.msh.team,github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
-if [[ $PATH != *"$HOME/.istioctl/bin"* ]]; then export PATH=$HOME/.istioctl/bin:$PATH; fi
 if [[ $OS_ == "Darwin" ]]; then
   if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=/opt/homebrew/bin:$PATH; fi
   if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/openjdk/bin; fi
@@ -121,11 +120,11 @@ export KUBECONFIG=~/.kube/config.yaml
 [[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
 
 # proxy
-alias startproxy="export https_proxy=http://192.168.6.45:8118;export http_proxy=http://192.168.6.45:8118"
+alias startproxy="export https_proxy=http://localhost:8118;export http_proxy=http://localhost:8118"
 alias stopproxy="unset http_proxy && unset https_proxy"
 
-export http_proxy=http://j2gg0s-osx.local:8118
-export https_proxy=http://j2gg0s-osx.local:8118
+export http_proxy=http://localhost:8118
+export https_proxy=http://localhost:8118
 
 # alias
 if [[ $OS_ == "Darwin" ]]; then
@@ -139,4 +138,3 @@ alias klogs="kubectl logs"
 alias kget="kubectl get"
 
 . $HOME/.vim/rupa_z.sh
-source $HOME/.cargo/env
