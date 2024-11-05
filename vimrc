@@ -38,7 +38,7 @@ Plug 'gurpreetatwal/vim-avro'
 " C++
 Plug 'derekwyatt/vim-fswitch'
 Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-settings'
 
 Plug 'rust-lang/rust.vim'
 
@@ -52,7 +52,7 @@ colorscheme solarized8
 hi SpecialKey ctermbg=None ctermfg=66
 
 set number
-set autoindent
+" set autoindent
 set backspace=2
 " 文件检测
 :filetype on
@@ -61,7 +61,7 @@ set backspace=2
 
 " 缩进
 set tabstop=4
-set shiftwidth=2
+" set shiftwidth=2
 set expandtab
 " 忽略大小写，高亮搜索，增量搜索
 set ic hls is
@@ -70,8 +70,11 @@ set foldlevel=99
 
 " autocmd vimenter * NERDTree
 " Python 文件专享
-:autocmd FileType python :set softtabstop=4
+:autocmd FileType python :set shiftwidth=4
 :autocmd FileType python :set foldmethod=indent
+let g:python_indent = {}
+let g:python_indent.open_paren = 'shiftwidth()'
+let g:python_indent.closed_paren_align_last_line = v:false
 " rst 文件
 :autocmd FileType rst :set expandtab
 :autocmd FileType rst :set foldmethod=indent
@@ -122,13 +125,13 @@ nmap <F8> :TagbarToggle<CR>
 " vim-go
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
-let g:go_fmt_command = 'goimports'
-let g:go_fmt_options = {
-  \ 'gofmt': '-s',
-  \ 'goimports': '-local dev.rcrai.com'
-  \ }
 let g:go_echo_command_info = 1
 let g:go_fmt_experimental = 1
+let g:go_imports_mode = 'goimports'
+let g:go_fmt_options = {
+  \ 'gofmt': '-s',
+  \ 'goimports': '-local kunkka',
+  \ }
 
 let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode', 'typecheck', 'golint']
 
@@ -159,9 +162,9 @@ au! BufEnter *.cc let b:fswitchdst = 'h,hpp'
 au! BufEnter *.h let b:fswitchdst = 'cc'
 
 " vim-lsp for c++
-" let g:lsp_settings = {
-" \ 'gopls': {'disabled': 1},
-" \}
+let g:lsp_settings = {
+\ 'gopls': {'disabled': 1},
+\}
 
 " if executable('rust-analyzer')
 "   au User lsp_setup call lsp#register_server({
@@ -171,6 +174,14 @@ au! BufEnter *.h let b:fswitchdst = 'cc'
 "         \ })
 " endif
 
+" if isdirectory('.venv') && filereadable('./.venv/bin/pylsp')
+"     " pip install python-lsp-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pylsp',
+"         \ 'cmd': {server_info->[fnamemodify('./.venv/bin/pylsp', ':p')]},
+"         \ 'allowlist': ['python'],
+"         \ })
+" else
 if executable('pylsp')
     " pip install python-lsp-server
     au User lsp_setup call lsp#register_server({
@@ -203,6 +214,13 @@ augroup END
 let g:lsp_document_code_action_signs_enabled = 0
 
 " debug vim-lsp
-let g:lsp_log_verbose = 1
+" let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/logs/vim-lsp.log')
+" let g:go_gopls_options = [
+"     \ '-logfile', expand('~/logs/gopls.log'),
+"     \ '-rpc.trace'
+"     \ ]
 let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+" 正则匹配使用的内存限制，单位 KB
+set maxmempattern=12800

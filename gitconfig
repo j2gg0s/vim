@@ -2,8 +2,6 @@
   insteadOf = https://github.com/j2gg0s
 [url "git@gitlab.com:jakiros"]
   insteadOf = https://gitlab.com/jakiros
-[url "ssh://git@dev.msh.team:30022/"]
-  insteadOf = https://dev.msh.team/
 [core]
   excludesfile = ~/.gitignore
   editor = vim
@@ -26,3 +24,5 @@
   proxy = "localhost:8118"
 [http "https://gitlab.com/"]
   proxy = "localhost:8118"
+[url "ssh://git@dev.msh.team:30022"]
+  insteadOf = https://dev.msh.team

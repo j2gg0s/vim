@@ -98,18 +98,24 @@ source $ZSH/oh-my-zsh.sh
 alias tmux="tmux -2"
 
 export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
-export GODIR=$HOME/go/src/github.com/go
+export GODIR=$HOME/gosrc
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="dev.msh.team,github.com/j2gg0s"
+export GOPRIVATE="dev.msh.team,ohai.bot,github.com/j2gg0s"
+export GOTOOLCHAIN=go1.22.4
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
 if [[ $OS_ == "Darwin" ]]; then
   if [[ $PATH != *"/opt/homebrew/bin"* ]]; then export PATH=/opt/homebrew/bin:$PATH; fi
   if [[ $PATH != *"/opt/homebrew/opt/openjdk/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/openjdk/bin; fi
   if [[ $PATH != *"/opt/homebrew/opt/mysql-client@5.7/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/mysql-client@5.7/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/llvm/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/llvm/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/binutils/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/binutils/bin; fi
+  if [[ $PAHT != *"/opt/homebrew/Cellar/x86_64-linux-gnu-binutils/2.41_1/bin"* ]]; then export PATH=$PATH:/opt/homebrew/Cellar/x86_64-linux-gnu-binutils/2.41_1/bin; fi
+  if [[ $PAHT != *"/Users/j2gg0s/.local/bin"* ]]; then export PATH=$PATH:/Users/j2gg0s/.local/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/postgresql"* ]]; then export PATH=$PATH:/opt/homebrew/opt/postgresql@15/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/openjdk@21/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/openjdk@21/bin; fi
+  export JAVA_HOME="/opt/homebrew/opt/openjdk@21"
 fi
-
 
 # bash completion
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
@@ -138,3 +144,19 @@ alias klogs="kubectl logs"
 alias kget="kubectl get"
 
 . $HOME/.vim/rupa_z.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/j2gg0s/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/j2gg0s/miniconda/etc/profile.d/conda.sh" ]; then
+        . "/Users/j2gg0s/miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/j2gg0s/miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
