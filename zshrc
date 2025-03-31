@@ -100,8 +100,7 @@ alias tmux="tmux -2"
 export GOPATH=$HOME/go
 export GODIR=$HOME/gosrc
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="dev.msh.team,ohai.bot,github.com/j2gg0s"
-export GOTOOLCHAIN=go1.22.4
+export GOPRIVATE="github.com/j2gg0s"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
 if [[ $OS_ == "Darwin" ]]; then
@@ -114,6 +113,7 @@ if [[ $OS_ == "Darwin" ]]; then
   if [[ $PAHT != *"/Users/j2gg0s/.local/bin"* ]]; then export PATH=$PATH:/Users/j2gg0s/.local/bin; fi
   if [[ $PATH != *"/opt/homebrew/opt/postgresql"* ]]; then export PATH=$PATH:/opt/homebrew/opt/postgresql@15/bin; fi
   if [[ $PATH != *"/opt/homebrew/opt/openjdk@21/bin"* ]]; then export PATH=$PATH:/opt/homebrew/opt/openjdk@21/bin; fi
+  if [[ $PATH != *"/opt/homebrew/opt/mysql@8.4/bin"* ]]; then export PATH=/opt/homebrew/opt/mysql@8.4/bin:$PATH; fi
   export JAVA_HOME="/opt/homebrew/opt/openjdk@21"
 fi
 
@@ -126,15 +126,16 @@ export KUBECONFIG=~/.kube/config.yaml
 [[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
 
 # proxy
-alias startproxy="export https_proxy=http://localhost:8118;export http_proxy=http://localhost:8118"
-alias stopproxy="unset http_proxy && unset https_proxy"
+alias startproxy="export https_proxy=http://localhost:8118;export http_proxy=http://localhost:8118;HTTP_PROXY=http://localhost:8118;HTTPS_PROXY=http://localhost:8118"
+alias stopproxy="unset http_proxy && unset https_proxy && unset HTTP_PROXY && unset HTTPS_PROXY"
 
 export http_proxy=http://localhost:8118
 export https_proxy=http://localhost:8118
+export HTTP_PROXY=http://localhost:8118
+export HTTPS_PROXY=http://localhost:8118
 
 # alias
 if [[ $OS_ == "Darwin" ]]; then
-  alias ctags="/usr/local/bin/ctags"
   export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
@@ -158,5 +159,9 @@ else
     fi
 fi
 unset __conda_setup
+CONDA_SOLVER=classic
 # <<< conda initialize <<<
 
+export GETH_DATADIR=/Users/j2gg0s/gethdata
+export GETH_DATADIR_ANCIENT=/Volumes/jdisk/ancient
+export GETH_NETWORKID=1

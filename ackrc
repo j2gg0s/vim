@@ -8,5 +8,8 @@
 --ignore-file=is:.gutentags
 --ignore-file=is:go.sum
 
+--type-set=gotest:match:.*_test.go
+--type-set=sol:match:.*.sol
+
 # --ignore-dir=vendor
 # --ignore-dir=third_party

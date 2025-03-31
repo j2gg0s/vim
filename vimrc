@@ -16,6 +16,8 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'uarun/vim-protobuf'
+Plug 'tomlion/vim-solidity'
+
 
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
@@ -63,6 +65,7 @@ set backspace=2
 set tabstop=4
 " set shiftwidth=2
 set expandtab
+set shiftwidth=4
 " 忽略大小写，高亮搜索，增量搜索
 set ic hls is
 
@@ -86,6 +89,8 @@ let g:python_indent.closed_paren_align_last_line = v:false
 :autocmd FileType gotpl :set expandtab
 :autocmd FileType xml :set foldmethod=syntax
 :autocmd FileType json :set foldmethod=syntax
+
+:autocmd FileType solidity :set foldmethod=indent
 
 :autocmd FileType javascript :set tabstop=2
 :autocmd FileType javascript :set softtabstop=2
@@ -141,6 +146,7 @@ au BufRead,BufNewFile *.gotpl setfiletype gotexttmpl
 au BufRead,BufNewFile *.api setfiletype proto
 au BufRead,BufNewFile *.proto setfiletype proto
 au BufRead,BufNewFile *_test.go setfiletype gotest
+au BufRead,BufNewFile *.sol setfiletype sol
 
 " postgresql plugin
 let g:sql_type_default = 'pgsql'
@@ -224,3 +230,16 @@ let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 " 正则匹配使用的内存限制，单位 KB
 set maxmempattern=12800
+
+" source: https://gist.github.com/shuangjj/ae816cacffce3a27e256de7c21312c50
+" for solidity
+let g:tagbar_type_solidity = {
+    \ 'ctagstype': 'solidity',
+    \ 'kinds' : [
+        \ 'c:contracts',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:mappings',
+        \ 'v:varialbes',
+    \ ]
+\ }
