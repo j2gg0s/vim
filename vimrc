@@ -14,7 +14,6 @@ Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'pedrohdz/vim-yaml-folds'
 Plug 'uarun/vim-protobuf'
 Plug 'tomlion/vim-solidity'
 
@@ -30,6 +29,7 @@ Plug 'lifepillar/pgsql.vim'
 Plug 'lifepillar/pgsql.vim'
 
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 Plug 'prettier/vim-prettier'
 "
 Plug 'google/vim-jsonnet'
@@ -96,6 +96,16 @@ let g:python_indent.closed_paren_align_last_line = v:false
 :autocmd FileType javascript :set softtabstop=2
 :autocmd FileType javascript :set shiftwidth=2
 
+" TypeScript (pi-mono uses tab with width 3)
+:autocmd FileType typescript :set tabstop=3
+:autocmd FileType typescript :set softtabstop=3
+:autocmd FileType typescript :set shiftwidth=3
+:autocmd FileType typescript :set noexpandtab
+:autocmd FileType typescriptreact :set tabstop=3
+:autocmd FileType typescriptreact :set softtabstop=3
+:autocmd FileType typescriptreact :set shiftwidth=3
+:autocmd FileType typescriptreact :set noexpandtab
+
 :autocmd FileType cpp setlocal 
     \ foldmethod=syntax
     \ foldlevelstart=99
@@ -159,9 +169,16 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
-" prettier
+
+augroup typescript_folding
+    au!
+    au FileType typescript setlocal foldmethod=syntax
+    au FileType typescriptreact setlocal foldmethod=syntax
+augroup END
+" prettier (disabled for typescript, use biome instead)
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
 
 " fswitch
 au! BufEnter *.cc let b:fswitchdst = 'h,hpp'
@@ -170,7 +187,22 @@ au! BufEnter *.h let b:fswitchdst = 'cc'
 " vim-lsp for c++
 let g:lsp_settings = {
 \ 'gopls': {'disabled': 1},
+\ 'clangd': {'disabled': 1},
 \}
+
+" vim-lsp for typescript
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(
+        \     lsp#utils#find_nearest_parent_file_directory(
+        \         lsp#utils#get_buffer_path(),
+        \         ['tsconfig.json', 'package.json']
+        \     ))},
+        \ 'allowlist': ['typescript', 'typescriptreact', 'javascript', 'javascriptreact'],
+        \ })
+endif
 
 " if executable('rust-analyzer')
 "   au User lsp_setup call lsp#register_server({
@@ -197,8 +229,8 @@ if executable('pylsp')
         \ })
 endif
 
-:autocmd FileType c setlocal omnifunc=lsp#complete
-:autocmd FileType cpp setlocal omnifunc=lsp#complete
+" :autocmd FileType c setlocal omnifunc=lsp#complete
+" :autocmd FileType cpp setlocal omnifunc=lsp#complete
 :autocmd FileType objc setlocal omnifunc=lsp#complete
 :autocmd FileType objcpp setlocal omnifunc=lsp#complete
 
@@ -215,6 +247,13 @@ augroup _lsp
   autocmd FileType c,cpp,python,rust command! GC LspCallHierarchyIncoming
   autocmd FileType c,cpp,python,rust command! GoDecls LspDeclaration
   autocmd FileType c,cpp,python,rust nnoremap <buffer> <C-]> :LspDefinition<CR>
+
+  autocmd FileType typescript,typescriptreact command! GD LspDefinition
+  autocmd FileType typescript,typescriptreact command! GI LspImplementation
+  autocmd FileType typescript,typescriptreact command! GR LspReferences
+  autocmd FileType typescript,typescriptreact command! GC LspCallHierarchyIncoming
+  autocmd FileType typescript,typescriptreact command! GoDecls LspDeclaration
+  autocmd FileType typescript,typescriptreact nnoremap <buffer> <C-]> :LspDefinition<CR>
 augroup END
 
 let g:lsp_document_code_action_signs_enabled = 0

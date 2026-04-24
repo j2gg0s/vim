@@ -95,12 +95,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias tmux="tmux -2"
+# alias tmux="tmux -2", use Tc
 
 export GOPATH=$HOME/go
 export GODIR=$HOME/gosrc
 export GOPROXY=https://goproxy.cn,direct
-export GOPRIVATE="github.com/j2gg0s"
+export GOPRIVATE="github.com/j2gg0s,g.echo.tech,github.com/XiaoMi/Gaea"
 
 if [[ $PATH != *"$GOPATH/bin"* ]]; then export PATH=$PATH:$GOPATH/bin; fi
 if [[ $OS_ == "Darwin" ]]; then
@@ -123,7 +123,7 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 
 export KUBECONFIG=~/.kube/config.yaml
 
-[[ -e ~/.ssh/.profile ]] && emulate sh -c 'source ~/.ssh/.profile'
+[[ -e ~/.ssh/profile ]] && emulate sh -c 'source ~/.ssh/profile'
 
 # proxy
 alias startproxy="export https_proxy=http://localhost:8118;export http_proxy=http://localhost:8118;HTTP_PROXY=http://localhost:8118;HTTPS_PROXY=http://localhost:8118"
@@ -143,6 +143,7 @@ alias k="kubectl"
 alias g="git"
 alias klogs="kubectl logs"
 alias kget="kubectl get"
+alias hf="huggingface-cli"
 
 . $HOME/.vim/rupa_z.sh
 
@@ -165,3 +166,16 @@ CONDA_SOLVER=classic
 export GETH_DATADIR=/Users/j2gg0s/gethdata
 export GETH_DATADIR_ANCIENT=/Volumes/jdisk/ancient
 export GETH_NETWORKID=1
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+GOTOOLCHAIN=local
+
+export HF_HOME=/Volumes/Storage/huggingface
+export GONOSUMDB=github.com/XiaoMi/Gaea
+
+alias c="claude"
+alias cc="claude --continue"
+alias cs="claude --model claude-sonnet-4-6"

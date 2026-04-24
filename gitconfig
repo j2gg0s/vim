@@ -11,11 +11,6 @@
 [push]
   default = current
   followTags = true
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
 [pull]
   ff = true
 [safe]
@@ -24,3 +19,11 @@
   proxy = "localhost:8118"
 [http "https://gitlab.com/"]
   proxy = "localhost:8118"
+[url "http://g.echo.tech/"]
+  insteadOf = git@g.echo.tech:
+[credential]
+	helper = cache
+[includeIf "gitdir:/Users/j2gg0s/go/src/g.echo.tech/"]
+    path = /Users/j2gg0s/go/src/g.echo.tech/.gitconfig
+[includeIf "gitdir:/Users/j2gg0s/py/src/comfy-nodes/"]
+    path = /Users/j2gg0s/py/src/comfy-nodes/.gitconfig
