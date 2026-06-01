@@ -179,3 +179,10 @@ export GONOSUMDB=github.com/XiaoMi/Gaea
 alias c="claude"
 alias cc="claude --continue"
 alias cs="claude --model claude-sonnet-4-6"
+
+# Activate ggmaster venv on macmini-NN (NN >= 01)
+case "$(scutil --get LocalHostName 2>/dev/null)" in
+  macmini-0[1-9]|macmini-[1-9][0-9])
+    [[ -f "$HOME/.venv/ggmaster/bin/activate" ]] && source "$HOME/.venv/ggmaster/bin/activate"
+    ;;
+esac
